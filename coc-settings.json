@@ -1,0 +1,7 @@
+{
+    "[typescript][javascript][typescriptreact][javascriptreact]": {
+        "coc.preferences.formatOnSave": true
+    },
+    "tsserver.useLocalTsdk": true,
+	"python.jediEnabled": false
+}
