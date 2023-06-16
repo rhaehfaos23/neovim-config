@@ -29,7 +29,6 @@ require("lazy").setup({
 	"ianks/vim-tsx",
 	"leafgarland/typescript-vim",
 	"github/copilot.vim",
-	"frazrepo/vim-rainbow",
 	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
 	"lukas-reineke/indent-blankline.nvim",
 	"nvim-tree/nvim-tree.lua",
@@ -39,6 +38,7 @@ require("lazy").setup({
 	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 	"sindrets/diffview.nvim",
 	"windwp/nvim-autopairs",
+    {"akinsho/bufferline.nvim", version = "*", dependencies = "nvim-tree/nvim-web-devicons"}
 })
 
 require("setup/telescope")
@@ -49,6 +49,7 @@ require("setup/lualine")
 require("setup/nvim-web-devicons")
 require("setup/hop")
 require("setup/nvim-autopairs")
+require("setup/bufferline")
 
 require("globals")
 
@@ -69,7 +70,7 @@ vim.keymap.set('n', 't', function() hop.hint_char1({ direction = directions.AFTE
 vim.keymap.set('n', 'T', function() hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true }) end, {remap=true})
 vim.keymap.set('n', 's', function() hop.hint_char2({ direction = directions.AFTER_CURSOR, }) end, {remap=false})
 vim.keymap.set('n', 'S', function() hop.hint_char2({ direction = directions.BEFORE_CURSOR, }) end, {remap=false})
-vim.keymap.set('n', '<leader>s', function() hop.hint_char2({}) end, {remap=false})
+-- vim.keymap.set('n', '<leader>s', function() hop.hint_char2({}) end, {remap=false})
 vim.keymap.set('n', '<leader>/', function() hop.hint_patterns({}) end, {remap=false})
 vim.keymap.set('n', '<leader>hw', function() hop.hint_words({}) end, {remap=false})
 vim.keymap.set('n', '<leader>l', function() hop.hint_lines_skip_whitespace({}) end, {remap=false})
@@ -77,11 +78,7 @@ vim.keymap.set('n', '<leader>l', function() hop.hint_lines_skip_whitespace({}) e
 -- setup must be called before loading
 vim.cmd.colorscheme "catppuccin"
 
-vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
-	pattern = { "*.ts", "*.tsx", "*.js", "*.jsx" },
-	command = ":RainbowLoad",
-})
-
+vim.opt.termguicolors = true
 vim.api.nvim_command("syntax on")
 vim.api.nvim_command("set nowrap")
 vim.api.nvim_command("set nocompatible")
@@ -96,7 +93,7 @@ vim.api.nvim_command("set expandtab")
 vim.api.nvim_command("set shiftwidth=4")          
 vim.api.nvim_command("set autoindent")
 vim.api.nvim_command("set wildmode=longest,list")
-vim.api.nvim_command("set cc=120")          
+vim.api.nvim_command("set cc=150")          
 vim.api.nvim_command("set mouse=a")
 vim.api.nvim_command("set clipboard=unnamedplus")
 vim.api.nvim_command("set cursorline")
