@@ -1,5 +1,5 @@
 let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html',
-\    'coc-json', 'coc-yank', 'coc-prettier', 'coc-java'] " coc-lists when windows
+\    'coc-json', 'coc-yank', 'coc-prettier', 'coc-java', 'coc-python', 'coc-deno', 'coc-yaml'] " coc-lists when windows
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
