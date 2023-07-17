@@ -63,6 +63,7 @@ vim.keymap.set("i", "<CR>", "v:lua.MUtils.completion_confirm()", {expr = true , 
 
 local vimtreeapi = require("nvim-tree.api")
 vim.keymap.set("n", "<leader>t", vimtreeapi.tree.toggle, {silent = true})
+vim.keymap.set("n", "<leader>ft", vimtreeapi.tree.focus, {silent = true})
 
 local hop = require('hop')
 local directions = require('hop.hint').HintDirection
