@@ -123,5 +123,13 @@ else
 end
 
 
+vim.api.nvim_create_autocmd({"BufEnter", "BufRead"},{
+    pattern = {"*.ts", "*.js", "*.tsx", "*.jsx", "*.html"},
+    callback = function(ev) 
+        vim.api.nvim_command("setlocal ts=2 sw=2")
+    end
+})
+
+
 local vimrc = vim.fn.stdpath("config") .. "/vimrc.vim"
 vim.cmd.source(vimrc)

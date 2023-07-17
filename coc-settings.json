@@ -3,13 +3,13 @@
         "coc.preferences.formatOnSave": true
     },
     "tsserver.useLocalTsdk": true,
-	"python.jediEnabled": false,
-    "prettier.semi": false,
-    "prettier.useTabs": true,
-    "prettier.tabWidth": 4,
-    "prettier.printWidth": 150,
-    "prettier.singleQuote": true,
+	"python.jediEnabled": true,
+    "prettier.semi": true,
+    "prettier.useTabs": false,
+    "prettier.tabWidth": 2,
+    "prettier.printWidth": 120,
+    "prettier.singleQuote": false,
     "prettier.arrowParens": "avoid",
-    "prettier.trailingComma": "es5",
+    "prettier.trailingComma": "all",
     "prettier.endOfLine": "lf"
 }
