@@ -37,7 +37,7 @@ require("lazy").setup({
 	{ "nvim-telescope/telescope.nvim", tag = "0.1.1" },
 	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 	"sindrets/diffview.nvim",
-	"windwp/nvim-autopairs",
+--    { "windwp/nvim-autopairs", event = "InsertEnter" },
     {"akinsho/bufferline.nvim", version = "*", dependencies = "nvim-tree/nvim-web-devicons"}
 })
 
@@ -48,7 +48,7 @@ require("setup/nvim-tree")
 require("setup/lualine")
 require("setup/nvim-web-devicons")
 require("setup/hop")
-require("setup/nvim-autopairs")
+-- require("setup/nvim-autopairs")
 require("setup/bufferline")
 
 require("globals")
