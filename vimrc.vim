@@ -1,5 +1,5 @@
 let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html',
-\    'coc-json', 'coc-yank', 'coc-prettier', 'coc-java', 'coc-python', 'coc-deno', 'coc-yaml'] " coc-lists when windows
+\    'coc-json', 'coc-yank', 'coc-prettier', 'coc-java', 'coc-python', 'coc-deno', 'coc-yaml', 'coc-xml']
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -22,9 +22,9 @@ inoremap <silent><expr> <c-space> coc#refresh()
 " position. Coc only does snippet and additional edit on confirm.
 " <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
 if exists('*complete_info')
-inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+    inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 else
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+    inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 endif
 
 " Use `[g` and `]g` to navigate diagnostics
@@ -41,15 +41,12 @@ nmap <silent> gr <Plug>(coc-references)
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
-if (index(['vim','help'], &filetype) >= 0)
-execute 'h '.expand('<cword>')
-else
-call CocAction('doHover')
-endif
+    if (index(['vim','help'], &filetype) >= 0)
+        execute 'h '.expand('<cword>')
+    else
+        call CocAction('doHover')
+    endif
 endfunction
-
-" Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
@@ -126,14 +123,16 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 
-autocmd BufNewFile,BufRead tsconfig.json setlocal filetype=jsonc
-
 command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
 
 " == AUTOCMD ================================ 
-" by default .ts file are not identified as typescript and .tsx files are not
-" identified as typescript react file, so add following
-au BufNewFile,BufRead *.ts setlocal filetype=typescript
-au BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
+autocmd BufNewFile,BufRead *.ts                setlocal filetype=typescript
+autocmd BufNewFile,BufRead *.tsx               setlocal filetype=typescript.tsx
+autocmd BufNewFile,BufRead *.handlebars        setlocal filetype=html
+autocmd BufNewFile,BufRead *.hbs               setlocal filetype=html
+autocmd BufNewFile,BufRead tsconfig.json       setlocal filetype=jsonc
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
 " == AUTOCMD END ================================
 

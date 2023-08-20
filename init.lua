@@ -78,6 +78,7 @@ vim.keymap.set('n', '<leader>l', function() hop.hint_lines_skip_whitespace({}) e
 vim.cmd.colorscheme "catppuccin"
 
 vim.opt.termguicolors = true
+
 vim.api.nvim_command("syntax on")
 vim.api.nvim_command("set nowrap")
 vim.api.nvim_command("set nocompatible")
@@ -121,13 +122,12 @@ else
 end
 
 
-vim.api.nvim_create_autocmd({"BufEnter", "BufRead"},{
+vim.api.nvim_create_autocmd({"BufEnter", "BufRead"}, {
     pattern = { "*.ts", "*.js", "*.tsx", "*.jsx", "*.html", "*.mjs", "*.css" },
     callback = function(ev) 
         vim.api.nvim_command("setlocal ts=2 sw=2")
     end
 })
-
 
 local vimrc = vim.fn.stdpath("config") .. "/vimrc.vim"
 vim.cmd.source(vimrc)
