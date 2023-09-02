@@ -21,14 +21,12 @@ require("lazy").setup({
 	"ryanoasis/vim-devicons",
 	"SirVer/ultisnips",
 	"honza/vim-snippets",
-	"preservim/nerdcommenter",
 	"mhinz/vim-startify",
 	{ "neoclide/coc.nvim", branch = "release" },
 	{ "catppuccin/nvim", name = "catppuccin" },
 	"tpope/vim-surround",
 	"ianks/vim-tsx",
 	"leafgarland/typescript-vim",
-	"github/copilot.vim",
 	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
 	"lukas-reineke/indent-blankline.nvim",
 	"nvim-tree/nvim-tree.lua",
@@ -37,7 +35,8 @@ require("lazy").setup({
 	{ "nvim-telescope/telescope.nvim", tag = "0.1.1" },
 	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 	"sindrets/diffview.nvim",
-    {"akinsho/bufferline.nvim", version = "*", dependencies = "nvim-tree/nvim-web-devicons"}
+    { "akinsho/bufferline.nvim", version = "*", dependencies = "nvim-tree/nvim-web-devicons" },
+	{ "numToStr/Comment.nvim", lazy=false }
 })
 
 require("setup/telescope")
@@ -48,6 +47,7 @@ require("setup/lualine")
 require("setup/nvim-web-devicons")
 require("setup/hop")
 require("setup/bufferline")
+require("setup/comment_nvim")
 
 require("globals")
 
