@@ -32,11 +32,12 @@ require("lazy").setup({
 	"nvim-tree/nvim-tree.lua",
 	"phaazon/hop.nvim",
 	"nvim-lua/plenary.nvim",
-	{ "nvim-telescope/telescope.nvim", tag = "0.1.1" },
+	{ "nvim-telescope/telescope.nvim", tag = "0.1.2" },
 	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 	"sindrets/diffview.nvim",
     { "akinsho/bufferline.nvim", version = "*", dependencies = "nvim-tree/nvim-web-devicons" },
-	{ "numToStr/Comment.nvim", lazy=false }
+	{ "numToStr/Comment.nvim", lazy=false },
+	'editorconfig/editorconfig-vim',
 })
 
 require("setup/telescope")
@@ -52,16 +53,21 @@ require("setup/comment_nvim")
 require("globals")
 
 local builtin = require("telescope.builtin")
+local themes = require("telescope.themes")
 vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
 vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
 vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
 vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
+vim.keymap.set("n", "<leader>ft", builtin.tags, {})
+
 
 vim.keymap.set("i", "<CR>", "v:lua.MUtils.completion_confirm()", {expr = true , noremap = true})
 
 local vimtreeapi = require("nvim-tree.api")
-vim.keymap.set("n", "<leader>t", vimtreeapi.tree.toggle, {silent = true})
-vim.keymap.set("n", "<leader>ft", vimtreeapi.tree.focus, {silent = true})
+vim.keymap.set("n", "<leader>tt", vimtreeapi.tree.toggle, {silent = true})
+vim.keymap.set("n", "<leader>to", vimtreeapi.tree.open, {silent = true})
+vim.keymap.set("n", "<leader>tc", vimtreeapi.tree.close, {silent = true})
+vim.keymap.set("n", "<leader>tf", vimtreeapi.tree.focus, {silent = true})
 
 local hop = require('hop')
 local directions = require('hop.hint').HintDirection
@@ -75,7 +81,7 @@ vim.keymap.set('n', '<leader>hw', function() hop.hint_words({}) end, {remap=fals
 vim.keymap.set('n', '<leader>l', function() hop.hint_lines_skip_whitespace({}) end, {remap=false})
 
 -- setup must be called before loading
-vim.cmd.colorscheme "catppuccin"
+vim.cmd.colorscheme "catppuccin-mocha" -- catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
 
 vim.opt.termguicolors = true
 
@@ -104,6 +110,7 @@ vim.api.nvim_command("set hidden")
 vim.api.nvim_command("set nobackup")
 vim.api.nvim_command("set nowritebackup")
 vim.api.nvim_command("set cmdheight=2")
+vim.api.nvim_command("set tags=tags")
 
 -- Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 -- delays and poor user experience.
@@ -306,13 +313,16 @@ keyset("n", "<leader>k", ":<C-u>CocPrev<cr>", opts)
 keyset("n", "<leader>p", ":<C-u>CocListResume<cr>", opts)
 -- coc.vim config end
 
+-- vim-startify no chagne directory
+vim.g.startify_change_to_dir = 0
 
-vim.api.nvim_create_autocmd({"BufEnter", "BufRead"}, {
-    pattern = { "*.ts", "*.js", "*.tsx", "*.jsx", "*.html", "*.mjs", "*.css" },
-    callback = function(ev) 
-        vim.api.nvim_command("setlocal ts=2 sw=2")
-    end
-})
+
+-- vim.api.nvim_create_autocmd({"BufEnter", "BufRead"}, {
+--     pattern = { "*.ts", "*.js", "*.tsx", "*.jsx", "*.html", "*.mjs", "*.css" },
+--     callback = function(ev) 
+--         vim.api.nvim_command("setlocal ts=2 sw=2")
+--     end
+-- })
 
 local vimrc = vim.fn.stdpath("config") .. "/vimrc.vim"
 vim.cmd.source(vimrc)
