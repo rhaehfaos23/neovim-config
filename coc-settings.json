@@ -2,8 +2,10 @@
     "[typescript][javascript][typescriptreact][javascriptreact]": {
         "coc.preferences.formatOnSave": true
     },
+	"[python]": {
+        "coc.preferences.formatOnSave": true
+    },
     "tsserver.useLocalTsdk": true,
-	"python.jediEnabled": true,
     "prettier.semi": true,
     "prettier.useTabs": false,
     "prettier.tabWidth": 2,
