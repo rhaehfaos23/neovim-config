@@ -99,7 +99,7 @@ vim.api.nvim_command("set expandtab")
 vim.api.nvim_command("set shiftwidth=4")          
 vim.api.nvim_command("set autoindent")
 vim.api.nvim_command("set wildmode=longest,list")
-vim.api.nvim_command("set cc=120")          
+vim.api.nvim_command("set cc=150")          
 vim.api.nvim_command("set mouse=a")
 vim.api.nvim_command("set clipboard=unnamedplus")
 vim.api.nvim_command("set cursorline")
@@ -164,7 +164,7 @@ keyset("i", "<cr>", [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r
 -- Use <c-j> to trigger snippets
 -- keyset("i", "<c-j>", "<Plug>(coc-snippets-expand-jump)")
 -- Use <c-space> to trigger completion
-keyset("i", "<c-space>", "coc#refresh()", {silent = true, expr = true})
+keyset("i", "<c-j>", "coc#refresh()", {silent = true, expr = true})
 
 -- Use `[g` and `]g` to navigate diagnostics
 -- Use `:CocDiagnostics` to get all diagnostics of current buffer in location list
