@@ -32,7 +32,7 @@ require("lazy").setup({
 	"nvim-tree/nvim-tree.lua",
 	"phaazon/hop.nvim",
 	"nvim-lua/plenary.nvim",
-	{ "nvim-telescope/telescope.nvim", tag = "0.1.2" },
+	{ "nvim-telescope/telescope.nvim", branch = "0.1.x" },
 	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 	"sindrets/diffview.nvim",
     { "akinsho/bufferline.nvim", version = "*", dependencies = "nvim-tree/nvim-web-devicons" },
