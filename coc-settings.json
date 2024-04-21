@@ -13,5 +13,10 @@
     "prettier.singleQuote": false,
     "prettier.arrowParens": "avoid",
     "prettier.trailingComma": "all",
-    "prettier.endOfLine": "lf"
+    "prettier.endOfLine": "lf",
+    "workspace.ignoredFolders": [
+        "$HOME",
+        "$HOME/.cargo/**",
+        "$HOME/.rustup/**"
+    ]
 }

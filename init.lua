@@ -37,7 +37,8 @@ require("lazy").setup({
 	"sindrets/diffview.nvim",
     { "akinsho/bufferline.nvim", version = "*", dependencies = "nvim-tree/nvim-web-devicons" },
 	{ "numToStr/Comment.nvim", lazy=false },
-	'editorconfig/editorconfig-vim',
+	"editorconfig/editorconfig-vim",
+    "jiangmiao/auto-pairs",
 })
 
 require("setup/telescope")
