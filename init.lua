@@ -317,7 +317,7 @@ keyset("n", "<leader>p", ":<C-u>CocListResume<cr>", opts)
 -- vim-startify no chagne directory
 vim.g.startify_change_to_dir = 0
 
--- Alt+h, j, k, l 맵핑 설정
+-- 키 맵핑
 local keymap = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
