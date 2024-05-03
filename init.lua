@@ -317,25 +317,5 @@ keyset("n", "<leader>p", ":<C-u>CocListResume<cr>", opts)
 -- vim-startify no chagne directory
 vim.g.startify_change_to_dir = 0
 
--- 키 맵핑
-local keymap = vim.api.nvim_set_keymap
-local opts = { noremap = true, silent = true }
-
--- 왼쪽으로 이동
-keymap('i', '<M-h>', '<Left>', opts)
--- 아래로 이동
-keymap('i', '<M-j>', '<Down>', opts)
--- 위로 이동
-keymap('i', '<M-k>', '<Up>', opts)
--- 오른쪽으로 이동
-keymap('i', '<M-l>', '<Right>', opts)
--- 백스페이스
-keymap('i', '<C-h>', '<BS>', opts)
--- Delete
-keymap('i', '<C-l>', '<Del>', opts)
--- Ctrl+s로 현재 라인의 끝에 ';'를 추가하고 새로운 라인으로 이동
-keymap('n', '<C-s>', 'A;<Esc>o', opts);
-keymap('i', '<C-s>', '<Esc>A;<Esc>o', opts);
-
 local vimrc = vim.fn.stdpath("config") .. "/vimrc.vim"
 vim.cmd.source(vimrc)

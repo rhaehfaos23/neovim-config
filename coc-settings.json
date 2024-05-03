@@ -1,22 +1,19 @@
 {
-    "[typescript][javascript][typescriptreact][javascriptreact]": {
-        "coc.preferences.formatOnSave": true
-    },
-	"[python]": {
-        "coc.preferences.formatOnSave": true
-    },
-    "tsserver.useLocalTsdk": true,
-    "prettier.semi": true,
-    "prettier.useTabs": false,
-    "prettier.tabWidth": 2,
-    "prettier.printWidth": 120,
-    "prettier.singleQuote": false,
-    "prettier.arrowParens": "avoid",
-    "prettier.trailingComma": "all",
-    "prettier.endOfLine": "lf",
-    "workspace.ignoredFolders": [
-        "$HOME",
-        "$HOME/.cargo/**",
-        "$HOME/.rustup/**"
-    ]
+  "[typescript][javascript][typescriptreact][javascriptreact]": {
+    "coc.preferences.formatOnSave": true
+  },
+  "[python]": {
+    "coc.preferences.formatOnSave": true
+  },
+  "tsserver.useLocalTsdk": true,
+  "prettier.semi": true,
+  "prettier.useTabs": false,
+  "prettier.tabWidth": 2,
+  "prettier.printWidth": 120,
+  "prettier.singleQuote": false,
+  "prettier.arrowParens": "avoid",
+  "prettier.trailingComma": "all",
+  "prettier.endOfLine": "lf",
+  "workspace.ignoredFolders": ["$HOME", "$HOME/.cargo/**", "$HOME/.rustup/**"],
+  "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/18.1.3/clangd_18.1.3/bin/clangd",
 }
