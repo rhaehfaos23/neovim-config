@@ -52,34 +52,9 @@ require("setup/bufferline")
 require("setup/comment_nvim")
 
 require("globals")
+require("keys")
 
-local builtin = require("telescope.builtin")
 local themes = require("telescope.themes")
-vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
-vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
-vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
-vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
-vim.keymap.set("n", "<leader>ft", builtin.tags, {})
-
-
--- vim.keymap.set("i", "<CR>", "v:lua.MUtils.completion_confirm()", {expr = true , noremap = true})
-
-local vimtreeapi = require("nvim-tree.api")
-vim.keymap.set("n", "<leader>tt", vimtreeapi.tree.toggle, {silent = true})
-vim.keymap.set("n", "<leader>to", vimtreeapi.tree.open, {silent = true})
-vim.keymap.set("n", "<leader>tc", vimtreeapi.tree.close, {silent = true})
-vim.keymap.set("n", "<leader>tf", vimtreeapi.tree.focus, {silent = true})
-
-local hop = require('hop')
-local directions = require('hop.hint').HintDirection
-vim.keymap.set('n', 't', function() hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true }) end, {remap=true})
-vim.keymap.set('n', 'T', function() hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true }) end, {remap=true})
-vim.keymap.set('n', 's', function() hop.hint_char2({ direction = directions.AFTER_CURSOR, }) end, {remap=false})
-vim.keymap.set('n', 'S', function() hop.hint_char2({ direction = directions.BEFORE_CURSOR, }) end, {remap=false})
--- vim.keymap.set('n', '<leader>s', function() hop.hint_char2({}) end, {remap=false})
-vim.keymap.set('n', '<leader>/', function() hop.hint_patterns({}) end, {remap=false})
-vim.keymap.set('n', '<leader>hw', function() hop.hint_words({}) end, {remap=false})
-vim.keymap.set('n', '<leader>l', function() hop.hint_lines_skip_whitespace({}) end, {remap=false})
 
 -- setup must be called before loading
 vim.cmd.colorscheme "catppuccin-mocha" -- catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
@@ -108,26 +83,11 @@ vim.api.nvim_command("set ttyfast")
 vim.api.nvim_command("set tags=tags")
 vim.api.nvim_command("filetype plugin indent on")
 vim.api.nvim_command("set hidden")
-vim.api.nvim_command("set nobackup")
-vim.api.nvim_command("set nowritebackup")
 vim.api.nvim_command("set cmdheight=2")
 vim.api.nvim_command("set tags=tags")
 
--- Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
--- delays and poor user experience.
-vim.api.nvim_command("set updatetime=300")
-
 -- Don't pass messages to |ins-completion-menu|.
 vim.api.nvim_command("set shortmess+=c")
-
--- Always show the signcolumn, otherwise it would shift the text each time
--- diagnostics appear/become resolved.
-if vim.fn.has("patch-8.1.1564") == 1 then
--- Recently vim can merge signcolumn and number column into one
-	vim.api.nvim_command("set signcolumn=number")
-else
-	vim.api.nvim_command("set signcolumn=yes")
-end
 
 -- coc.vim config start
 -- Some servers have issues with backup files, see #649
@@ -143,6 +103,7 @@ vim.opt.updatetime = 300
 vim.opt.signcolumn = "yes"
 
 local keyset = vim.keymap.set
+
 -- Autocomplete
 function _G.check_back_space()
     local col = vim.fn.col('.') - 1
@@ -316,14 +277,6 @@ keyset("n", "<leader>p", ":<C-u>CocListResume<cr>", opts)
 
 -- vim-startify no chagne directory
 vim.g.startify_change_to_dir = 0
-
-keyset("n", ",p", "\"0p", { silent = true, nowait = true, noremap= true });
-keyset("n", ",P", "\"0P", { silent = true, nowait = true, noremap= true });
-
-keyset("n", "<Up>", "<C-w><Up>", { silent = true, nowait = true, noremap= true });
-keyset("n", "<Down>", "<C-w><Down>", { silent = true, nowait = true, noremap= true });
-keyset("n", "<Left>", "<C-w><Left>", { silent = true, nowait = true, noremap= true });
-keyset("n", "<Right>", "<C-w><Right>", { silent = true, nowait = true, noremap= true });
 
 local vimrc = vim.fn.stdpath("config") .. "/vimrc.vim"
 vim.cmd.source(vimrc)
