@@ -62,7 +62,7 @@ vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
 vim.keymap.set("n", "<leader>ft", builtin.tags, {})
 
 
-vim.keymap.set("i", "<CR>", "v:lua.MUtils.completion_confirm()", {expr = true , noremap = true})
+-- vim.keymap.set("i", "<CR>", "v:lua.MUtils.completion_confirm()", {expr = true , noremap = true})
 
 local vimtreeapi = require("nvim-tree.api")
 vim.keymap.set("n", "<leader>tt", vimtreeapi.tree.toggle, {silent = true})
@@ -155,12 +155,12 @@ end
 -- NOTE: Use command ':verbose imap <tab>' to make sure Tab is not mapped by
 -- other plugins before putting this into your config
 local opts = {silent = true, noremap = true, expr = true, replace_keycodes = false}
-keyset("i", "<TAB>", 'coc#pum#visible() ? coc#pum#next(1) : v:lua.check_back_space() ? "<TAB>" : coc#refresh()', opts)
-keyset("i", "<S-TAB>", [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]], opts)
+-- keyset("i", "<TAB>", 'coc#pum#visible() ? coc#pum#next(1) : v:lua.check_back_space() ? "<TAB>" : coc#refresh()', opts)
+-- keyset("i", "<S-TAB>", [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]], opts)
 
 -- Make <CR> to accept selected completion item or notify coc.nvim to format
 -- <C-g>u breaks current undo, please make your own choice
-keyset("i", "<cr>", [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]], opts)
+keyset("i", "<TAB>", [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]], opts)
 
 -- Use <c-j> to trigger snippets
 -- keyset("i", "<c-j>", "<Plug>(coc-snippets-expand-jump)")
@@ -316,6 +316,14 @@ keyset("n", "<leader>p", ":<C-u>CocListResume<cr>", opts)
 
 -- vim-startify no chagne directory
 vim.g.startify_change_to_dir = 0
+
+keyset("n", ",p", "\"0p", { silent = true, nowait = true, noremap= true });
+keyset("n", ",P", "\"0P", { silent = true, nowait = true, noremap= true });
+
+keyset("n", "<Up>", "<C-w><Up>", { silent = true, nowait = true, noremap= true });
+keyset("n", "<Down>", "<C-w><Down>", { silent = true, nowait = true, noremap= true });
+keyset("n", "<Left>", "<C-w><Left>", { silent = true, nowait = true, noremap= true });
+keyset("n", "<Right>", "<C-w><Right>", { silent = true, nowait = true, noremap= true });
 
 local vimrc = vim.fn.stdpath("config") .. "/vimrc.vim"
 vim.cmd.source(vimrc)
