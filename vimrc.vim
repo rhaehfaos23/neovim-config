@@ -1,5 +1,5 @@
 let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html',
-\    'coc-json', 'coc-yank', 'coc-prettier', 'coc-java', 'coc-jedi', 'coc-deno', 'coc-yaml', 'coc-xml']
+\    'coc-json', 'coc-yank', 'coc-prettier', 'coc-jedi', 'coc-yaml', 'coc-xml']
 
 command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
 
