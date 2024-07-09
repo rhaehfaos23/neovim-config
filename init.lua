@@ -97,30 +97,6 @@ require("lazy").setup({
 	},
 	{
 		"mfussenegger/nvim-dap",
-		config = function(self, opts)
-			-- Debug settings if you're using nvim-dap
-			local dap = require("dap")
-
-			dap.configurations.scala = {
-				{
-					type = "scala",
-					request = "launch",
-					name = "RunOrTest",
-					metals = {
-						runType = "runOrTestFile",
-						--args = { "firstArg", "secondArg", "thirdArg" }, -- here just as an example
-					},
-				},
-				{
-					type = "scala",
-					request = "launch",
-					name = "Test Target",
-					metals = {
-						runType = "testTarget",
-					},
-				},
-			}
-		end,
 	},
 	{
 		"scalameta/nvim-metals",
@@ -157,36 +133,6 @@ require("lazy").setup({
 
 			metals_config.on_attach = function(client, bufnr)
 				require("metals").setup_dap()
-
-				-- Example mappings for usage with nvim-dap. If you don't use that, you can
-				-- skip these
-				map("n", "<leader>dc", function()
-					require("dap").continue()
-				end)
-
-				map("n", "<leader>dr", function()
-					require("dap").repl.toggle()
-				end)
-
-				map("n", "<leader>dK", function()
-					require("dap.ui.widgets").hover()
-				end)
-
-				map("n", "<leader>dt", function()
-					require("dap").toggle_breakpoint()
-				end)
-
-				map("n", "<leader>dso", function()
-					require("dap").step_over()
-				end)
-
-				map("n", "<leader>dsi", function()
-					require("dap").step_into()
-				end)
-
-				map("n", "<leader>dl", function()
-					require("dap").run_last()
-				end)
 			end
 
 			return metals_config
@@ -262,6 +208,7 @@ require("setup/typescript_tools")
 require("setup/typescript_tools")
 require("setup/formatter")
 require("setup/nvim_lint")
+require("setup/nvim-dap")
 
 require("globals")
 require("keys")

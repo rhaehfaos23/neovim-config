@@ -115,8 +115,36 @@ keyset("n", "=p", "<Plug>(YankyPutAfterFilter)")
 keyset("n", "=P", "<Plug>(YankyPutBeforeFilter)")
 
 keyset("n", "<leader>tyh", function()
-    require("telescope").extensions.yank_history.yank_history()
+	require("telescope").extensions.yank_history.yank_history()
 end)
 
 keyset("n", "<leader>yh", ":YankyRingHistory<CR>")
 keyset("n", "<leader>yc", ":YankyClearHistory<CR>")
+
+keyset("n", "<leader>dc", function()
+	require("dap").continue()
+end)
+
+keyset("n", "<leader>dr", function()
+	require("dap").repl.toggle()
+end)
+
+keyset("n", "<leader>dK", function()
+	require("dap.ui.widgets").hover()
+end)
+
+keyset("n", "<leader>dt", function()
+	require("dap").toggle_breakpoint()
+end)
+
+keyset("n", "<leader>dso", function()
+	require("dap").step_over()
+end)
+
+keyset("n", "<leader>dsi", function()
+	require("dap").step_into()
+end)
+
+keyset("n", "<leader>dl", function()
+	require("dap").run_last()
+end)
