@@ -209,6 +209,7 @@ require("setup/typescript_tools")
 require("setup/formatter")
 require("setup/nvim_lint")
 require("setup/nvim-dap")
+require("setup/lsp-config")
 
 require("globals")
 require("keys")
