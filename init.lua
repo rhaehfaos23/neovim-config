@@ -34,7 +34,7 @@ require("lazy").setup({
 	"phaazon/hop.nvim",
 	"nvim-lua/plenary.nvim",
 	{ "nvim-telescope/telescope.nvim", branch = "0.1.x" },
-	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+	{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release' },
 	"sindrets/diffview.nvim",
 	{ "akinsho/bufferline.nvim", version = "*", dependencies = "nvim-tree/nvim-web-devicons" },
 	{ "numToStr/Comment.nvim", lazy = false },
@@ -193,6 +193,7 @@ require("lazy").setup({
 			},
 		},
 	},
+    { 'echasnovski/mini.icons', version = false },
 })
 
 require("setup/telescope")
@@ -236,7 +237,7 @@ vim.api.nvim_command("set autoindent")
 vim.api.nvim_command("set wildmode=longest,list")
 vim.api.nvim_command("set cc=150")
 vim.api.nvim_command("set mouse=a")
-vim.api.nvim_command("set clipboard=unnamedplus")
+vim.api.nvim_command("set clipboard+=unnamedplus")
 vim.api.nvim_command("set cursorline")
 vim.api.nvim_command("set ttyfast")
 vim.api.nvim_command("set tags=tags")
