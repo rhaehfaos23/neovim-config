@@ -273,10 +273,8 @@ end
 -- vim-startify no chagne directory
 vim.g.startify_change_to_dir = 0
 
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+vim.api.nvim_create_autocmd({ "BufWritePost", "FileWritePost" }, {
 	callback = function()
-		-- try_lint without arguments runs the linters defined in `linters_by_ft`
-		-- for the current filetype
 		require("lint").try_lint()
 	end,
 })
