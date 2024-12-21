@@ -197,16 +197,6 @@ require("lazy").setup({
 		},
 	},
 	{ "echasnovski/mini.icons", version = false },
-	{
-		"joshuadanpeterson/typewriter",
-		dependencies = {
-			"nvim-treesitter/nvim-treesitter",
-		},
-		config = function()
-			require("typewriter").setup()
-		end,
-		opts = {},
-	},
 })
 
 require("setup/telescope")
@@ -258,6 +248,7 @@ vim.api.nvim_command("filetype plugin indent on")
 vim.api.nvim_command("set hidden")
 vim.api.nvim_command("set cmdheight=2")
 vim.api.nvim_command("set tags=tags")
+vim.api.nvim_command("set noswapfile")
 
 -- Don't pass messages to |ins-completion-menu|.
 vim.api.nvim_command("set shortmess+=c")
@@ -269,7 +260,7 @@ vim.opt.writebackup = false
 
 -- Having longer updatetime (default is 4000 ms = 4s) leads to noticeable
 -- delays and poor user experience
-vim.opt.updatetime = 300
+vim.opt.updatetime = 750 
 
 -- Always show the signcolumn, otherwise it would shift the text each time
 -- diagnostics appeared/became resolved
