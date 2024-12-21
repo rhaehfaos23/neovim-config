@@ -34,7 +34,10 @@ require("lazy").setup({
 	"phaazon/hop.nvim",
 	"nvim-lua/plenary.nvim",
 	{ "nvim-telescope/telescope.nvim", branch = "0.1.x" },
-	{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release' },
+	{
+		"nvim-telescope/telescope-fzf-native.nvim",
+		build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release",
+	},
 	"sindrets/diffview.nvim",
 	{ "akinsho/bufferline.nvim", version = "*", dependencies = "nvim-tree/nvim-web-devicons" },
 	{ "numToStr/Comment.nvim", lazy = false },
@@ -193,7 +196,17 @@ require("lazy").setup({
 			},
 		},
 	},
-    { 'echasnovski/mini.icons', version = false },
+	{ "echasnovski/mini.icons", version = false },
+	{
+		"joshuadanpeterson/typewriter",
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+		},
+		config = function()
+			require("typewriter").setup()
+		end,
+		opts = {},
+	},
 })
 
 require("setup/telescope")
