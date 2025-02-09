@@ -16,6 +16,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+	"nvim-java/nvim-java",
 	"folke/which-key.nvim",
 	{ "folke/neoconf.nvim", cmd = "Neoconf" },
 	"folke/neodev.nvim",
@@ -213,6 +214,7 @@ require("setup/typescript_tools")
 require("setup/formatter")
 require("setup/nvim_lint")
 require("setup/nvim-dap")
+require("setup/nvim-java")
 require("setup/lsp-config")
 
 require("globals")
@@ -260,7 +262,7 @@ vim.opt.writebackup = false
 
 -- Having longer updatetime (default is 4000 ms = 4s) leads to noticeable
 -- delays and poor user experience
-vim.opt.updatetime = 750 
+vim.opt.updatetime = 750
 
 -- Always show the signcolumn, otherwise it would shift the text each time
 -- diagnostics appeared/became resolved
