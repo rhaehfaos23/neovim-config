@@ -55,7 +55,11 @@ keyset("n", "gws", vim.lsp.buf.workspace_symbol)
 keyset("n", "<leader>cl", vim.lsp.codelens.run)
 keyset("n", "<leader>sh", vim.lsp.buf.signature_help)
 keyset("n", "<leader>rn", vim.lsp.buf.rename)
-keyset("n", "<leader>f", vim.lsp.buf.format)
+
+keyset({ "n", "v" }, "<leader>f", function()
+  require("conform").format({ async = true, lsp_fallback = true })
+end, { desc = "Format file or range" })
+
 keyset("n", "<leader>ca", vim.lsp.buf.code_action)
 
 keyset("n", "<leader>ws", function()
@@ -90,8 +94,8 @@ keyset("n", "<leader>e", function()
 	vim.diagnostic.open_float(0, { scope = "line" })
 end)
 
-keyset("n", "<leader>fo", ":Format<CR>")
-keyset("n", "<leader>fw", ":FormatWrite<CR>")
+-- keyset("n", "<leader>fo", ":Format<CR>")
+-- keyset("n", "<leader>fw", ":FormatWrite<CR>")
 
 keyset({ "n", "x" }, "p", "<Plug>(YankyPutAfter)")
 keyset({ "n", "x" }, "P", "<Plug>(YankyPutBefore)")
@@ -148,3 +152,4 @@ end)
 keyset("n", "<leader>dl", function()
 	require("dap").run_last()
 end)
+

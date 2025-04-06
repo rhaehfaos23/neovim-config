@@ -1,4 +1,3 @@
-local map = vim.keymap.set
 local fn = vim.fn
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -158,8 +157,9 @@ require("lazy").setup({
 		opts = {},
 	},
 	{ "williamboman/mason.nvim", opts = {} },
+	"williamboman/mason-lspconfig.nvim",
 	"mfussenegger/nvim-lint",
-	"mhartington/formatter.nvim",
+	-- "mhartington/formatter.nvim",
 	{
 		"gbprod/yanky.nvim",
 		opts = {
@@ -198,6 +198,10 @@ require("lazy").setup({
 		},
 	},
 	{ "echasnovski/mini.icons", version = false },
+	{
+		"stevearc/conform.nvim",
+		opts = {},
+	},
 })
 
 require("setup/telescope")
@@ -211,15 +215,15 @@ require("setup/bufferline")
 require("setup/comment_nvim")
 require("setup/typescript_tools")
 require("setup/typescript_tools")
-require("setup/formatter")
+-- require("setup/formatter")
 require("setup/nvim_lint")
 require("setup/nvim-dap")
 require("setup/nvim-java")
 require("setup/lsp-config")
+require("setup/conform")
 
 require("globals")
 require("keys")
-local themes = require("telescope.themes")
 
 -- setup must be called before loading
 vim.cmd.colorscheme("catppuccin-mocha") -- catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
