@@ -57,7 +57,7 @@ keyset("n", "<leader>sh", vim.lsp.buf.signature_help)
 keyset("n", "<leader>rn", vim.lsp.buf.rename)
 
 keyset({ "n", "v" }, "<leader>f", function()
-  require("conform").format({ async = true, lsp_fallback = true })
+	require("conform").format({ async = true, lsp_fallback = true })
 end, { desc = "Format file or range" })
 
 keyset("n", "<leader>ca", vim.lsp.buf.code_action)
@@ -125,31 +125,35 @@ end)
 keyset("n", "<leader>yh", ":YankyRingHistory<CR>")
 keyset("n", "<leader>yc", ":YankyClearHistory<CR>")
 
-keyset("n", "<leader>dc", function()
-	require("dap").continue()
-end)
+local dap = require("dap")
 
 keyset("n", "<leader>dr", function()
-	require("dap").repl.toggle()
+	dap.repl.toggle()
 end)
-
 keyset("n", "<leader>dK", function()
 	require("dap.ui.widgets").hover()
 end)
 
-keyset("n", "<leader>dt", function()
-	require("dap").toggle_breakpoint()
+keyset("n", "<leader>dl", function()
+	dap.run_last()
 end)
 
 keyset("n", "<leader>dso", function()
-	require("dap").step_over()
+	dap.step_over()
 end)
 
 keyset("n", "<leader>dsi", function()
-	require("dap").step_into()
+	dap.step_into()
 end)
 
-keyset("n", "<leader>dl", function()
-	require("dap").run_last()
+keyset("n", "<F12>", function()
+	dap.step_out()
 end)
 
+keyset("n", "<leader>b", function()
+	dap.toggle_breakpoint()
+end)
+
+keyset("n", "<leader>dc", function()
+	dap.continue()
+end)
