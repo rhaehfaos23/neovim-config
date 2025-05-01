@@ -21,30 +21,6 @@ keyset("n", "<leader>to", vimtreeapi.tree.open, { silent = true })
 keyset("n", "<leader>tc", vimtreeapi.tree.close, { silent = true })
 keyset("n", "<leader>tf", vimtreeapi.tree.focus, { silent = true })
 
-local hop = require("hop")
-local directions = require("hop.hint").HintDirection
-keyset("n", "t", function()
-	hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true })
-end, { remap = true })
-keyset("n", "T", function()
-	hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true })
-end, { remap = true })
-keyset("n", "s", function()
-	hop.hint_char2({ direction = directions.AFTER_CURSOR })
-end, { remap = false })
-keyset("n", "S", function()
-	hop.hint_char2({ direction = directions.BEFORE_CURSOR })
-end, { remap = false })
-keyset("n", "<leader>/", function()
-	hop.hint_patterns({})
-end, { remap = false })
-keyset("n", "<leader>hw", function()
-	hop.hint_words({})
-end, { remap = false })
-keyset("n", "<leader>l", function()
-	hop.hint_lines_skip_whitespace({})
-end, { remap = false })
-
 -- LSP mappings
 keyset("n", "gD", vim.lsp.buf.definition)
 keyset("n", "K", vim.lsp.buf.hover)
@@ -71,27 +47,27 @@ keyset("n", "<leader>aa", vim.diagnostic.setqflist)
 
 -- all workspace errors
 keyset("n", "<leader>ae", function()
-	vim.diagnostic.setqflist({ severity = "E" })
+	vim.diagnostic.setqflist({ severity = vim.diagnostic.severity.ERROR })
 end)
 
 -- all workspace warnings
 keyset("n", "<leader>aw", function()
-	vim.diagnostic.setqflist({ severity = "W" })
+	vim.diagnostic.setqflist({ severity = vim.diagnostic.severity.WARN })
 end)
 
 -- buffer diagnostics only
 keyset("n", "<leader>d", vim.diagnostic.setloclist)
 
 keyset("n", "[c", function()
-	vim.diagnostic.goto_prev({ wrap = false })
+    vim.diagnostic.jump({ count = -1, float = true })
 end)
 
 keyset("n", "]c", function()
-	vim.diagnostic.goto_next({ wrap = false })
+    vim.diagnostic.jump({ count = 1, float = true })
 end)
 
 keyset("n", "<leader>e", function()
-	vim.diagnostic.open_float(0, { scope = "line" })
+	vim.diagnostic.open_float({ bufnr = 0, scope = "line" })
 end)
 
 -- keyset("n", "<leader>fo", ":Format<CR>")
@@ -157,3 +133,13 @@ end)
 keyset("n", "<leader>dc", function()
 	dap.continue()
 end)
+
+-- hover window 스크롤 키맵
+keyset("n", "<C-d>", function()
+  vim.lsp.util.scroll(1)
+end, { silent = true })
+
+keyset("n", "<C-u>", function()
+  vim.lsp.util.scroll(-1)
+end, { silent = true })
+

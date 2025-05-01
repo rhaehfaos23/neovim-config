@@ -15,10 +15,22 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+	{
+		"folke/lazydev.nvim",
+		ft = "lua", -- only load on lua files
+		opts = {
+			library = {
+				-- See the configuration section for more details
+				-- Load luvit types when the `vim.uv` word is found
+				{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+			},
+		},
+	},
 	"nvim-java/nvim-java",
 	"folke/which-key.nvim",
+	"tpope/vim-repeat",
+	"ggandor/leap.nvim",
 	{ "folke/neoconf.nvim", cmd = "Neoconf" },
-	"folke/neodev.nvim",
 	"nvim-lualine/lualine.nvim",
 	"nvim-tree/nvim-web-devicons",
 	"ryanoasis/vim-devicons",
@@ -31,7 +43,6 @@ require("lazy").setup({
 	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
 	"lukas-reineke/indent-blankline.nvim",
 	"nvim-tree/nvim-tree.lua",
-	"phaazon/hop.nvim",
 	"nvim-lua/plenary.nvim",
 	{ "nvim-telescope/telescope.nvim", branch = "0.1.x" },
 	{
@@ -55,7 +66,7 @@ require("lazy").setup({
 			{ "hrsh7th/cmp-cmdline" },
 			{ "hrsh7th/nvim-cmp" },
 		},
-		opts = function()
+		opts = function(_, opts)
 			local cmp = require("cmp")
 			local conf = {
 				sources = cmp.config.sources({
@@ -94,6 +105,12 @@ require("lazy").setup({
 					{ name = "cmdline" },
 				}),
 				matching = { disallow_symbol_nonprefix_matching = false },
+			})
+
+			opts.sources = opts.sources or {}
+			table.insert(opts.sources, {
+				name = "lazydev",
+				group_index = 0, -- set group index to 0 to skip loading LuaLS completions
 			})
 			return conf
 		end,
@@ -210,7 +227,6 @@ require("setup/nvim-treesitter")
 require("setup/nvim-tree")
 require("setup/lualine")
 require("setup/nvim-web-devicons")
-require("setup/hop")
 require("setup/bufferline")
 require("setup/comment_nvim")
 require("setup/typescript_tools")
@@ -221,6 +237,7 @@ require("setup/nvim-dap")
 require("setup/nvim-java")
 require("setup/lsp-config")
 require("setup/conform")
+require("setup/leap")
 
 require("globals")
 require("keys")
