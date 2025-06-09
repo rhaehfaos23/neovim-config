@@ -32,10 +32,7 @@ lspconfig.rust_analyzer.setup({
       cargo = {
         allFeatures = true,
       },
-      -- rust-analyzer가 자동으로 검사(compile check) 시 clippy 사용
-      checkOnSave = {
-        command = "clippy",
-      },
+      checkOnSave = true
     }
   }
 })

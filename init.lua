@@ -26,6 +26,11 @@ require("lazy").setup({
 			},
 		},
 	},
+	{
+		"ibhagwan/fzf-lua",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		opts = {},
+	},
 	"nvim-java/nvim-java",
 	"folke/which-key.nvim",
 	"tpope/vim-repeat",
@@ -234,7 +239,6 @@ require("setup/typescript_tools")
 -- require("setup/formatter")
 require("setup/nvim_lint")
 require("setup/nvim-dap")
-require("setup/nvim-java")
 require("setup/lsp-config")
 require("setup/conform")
 require("setup/leap")
