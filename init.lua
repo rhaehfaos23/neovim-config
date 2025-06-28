@@ -293,8 +293,6 @@ vim.opt.updatetime = 750
 -- diagnostics appeared/became resolved
 vim.opt.signcolumn = "yes"
 
-local keyset = vim.keymap.set
-
 -- Autocomplete
 function _G.check_back_space()
 	local col = vim.fn.col(".") - 1

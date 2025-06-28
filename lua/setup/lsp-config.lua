@@ -32,7 +32,11 @@ lspconfig.rust_analyzer.setup({
       cargo = {
         allFeatures = true,
       },
-      checkOnSave = true
+      checkOnSave = {
+          command = "clippy"
+      }
     }
   }
 })
+
+lspconfig.html.setup({})
