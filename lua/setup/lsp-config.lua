@@ -1,6 +1,5 @@
 local lspconfig = require("lspconfig")
 
-
 lspconfig.lemminx.setup({})
 
 lspconfig.jdtls.setup({
@@ -22,21 +21,22 @@ lspconfig.jdtls.setup({
 lspconfig.lua_ls.setup({})
 
 lspconfig.rust_analyzer.setup({
-  -- 설정 예시
-  settings = {
-    ["rust-analyzer"] = {
-      assist = {
-        importEnforceGranularity = true,
-        importPrefix = "by_crate",
-      },
-      cargo = {
-        allFeatures = true,
-      },
-      checkOnSave = {
-          command = "clippy"
-      }
-    }
-  }
+	-- 설정 예시
+	settings = {
+		["rust-analyzer"] = {
+			assist = {
+				importEnforceGranularity = true,
+				importPrefix = "by_crate",
+			},
+			cargo = {
+				allFeatures = true,
+			},
+			checkOnSave = true,
+			check = {
+				command = "clippy",
+			},
+		},
+	},
 })
 
 lspconfig.html.setup({})
