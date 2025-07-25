@@ -16,7 +16,6 @@ keyset("n", "<leader>fh", builtin.help_tags, {})
 keyset("n", "<leader>ft", builtin.tags, {})
 
 local vimtreeapi = require("nvim-tree.api")
-keyset("n", "<leader>tt", vimtreeapi.tree.toggle, { silent = true })
 keyset("n", "<leader>to", vimtreeapi.tree.open, { silent = true })
 keyset("n", "<leader>tc", vimtreeapi.tree.close, { silent = true })
 keyset("n", "<leader>tf", vimtreeapi.tree.focus, { silent = true })
@@ -59,19 +58,16 @@ end)
 keyset("n", "<leader>d", vim.diagnostic.setloclist)
 
 keyset("n", "[c", function()
-    vim.diagnostic.jump({ count = -1, float = true })
+	vim.diagnostic.jump({ count = -1, float = true })
 end)
 
 keyset("n", "]c", function()
-    vim.diagnostic.jump({ count = 1, float = true })
+	vim.diagnostic.jump({ count = 1, float = true })
 end)
 
 keyset("n", "<leader>e", function()
 	vim.diagnostic.open_float({ bufnr = 0, scope = "line" })
 end)
-
--- keyset("n", "<leader>fo", ":Format<CR>")
--- keyset("n", "<leader>fw", ":FormatWrite<CR>")
 
 keyset({ "n", "x" }, "p", "<Plug>(YankyPutAfter)")
 keyset({ "n", "x" }, "P", "<Plug>(YankyPutBefore)")
@@ -134,12 +130,4 @@ keyset("n", "<leader>dc", function()
 	dap.continue()
 end)
 
--- hover window 스크롤 키맵
-keyset("n", "<C-d>", function()
-  vim.lsp.util.scroll(1)
-end, { silent = true })
-
-keyset("n", "<C-u>", function()
-  vim.lsp.util.scroll(-1)
-end, { silent = true })
-
+keyset("n", "<F2>", ":set paste!<CR>", { silent = true, noremap = true })

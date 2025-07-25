@@ -20,7 +20,10 @@ lspconfig.jdtls.setup({
 
 lspconfig.lua_ls.setup({})
 
+
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 lspconfig.rust_analyzer.setup({
+    capabilities = capabilities,
 	-- 설정 예시
 	settings = {
 		["rust-analyzer"] = {
@@ -30,10 +33,19 @@ lspconfig.rust_analyzer.setup({
 			},
 			cargo = {
 				allFeatures = true,
+				loadOutDirsFromCheck = true,
 			},
 			checkOnSave = true,
 			check = {
 				command = "clippy",
+			},
+			completion = {
+				autoimport = {
+					enable = true,
+				},
+			},
+			procMacro = {
+				enable = true,
 			},
 		},
 	},

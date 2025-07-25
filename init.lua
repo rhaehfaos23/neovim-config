@@ -31,7 +31,6 @@ require("lazy").setup({
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		opts = {},
 	},
-	"nvim-java/nvim-java",
 	"folke/which-key.nvim",
 	"tpope/vim-repeat",
 	"ggandor/leap.nvim",
@@ -58,40 +57,41 @@ require("lazy").setup({
 	{ "akinsho/bufferline.nvim", version = "*", dependencies = "nvim-tree/nvim-web-devicons" },
 	{ "numToStr/Comment.nvim", lazy = false },
 	"editorconfig/editorconfig-vim",
-	"jiangmiao/auto-pairs",
+	{
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		config = true,
+	},
 	{
 		"hrsh7th/nvim-cmp",
 		dependencies = {
 			{ "neovim/nvim-lspconfig" },
 			{ "hrsh7th/cmp-nvim-lsp" },
-			{ "hrsh7th/cmp-vsnip" },
-			{ "hrsh7th/vim-vsnip" },
 			{ "hrsh7th/cmp-buffer" },
 			{ "hrsh7th/cmp-path" },
 			{ "hrsh7th/cmp-cmdline" },
 			{ "hrsh7th/nvim-cmp" },
 		},
 		opts = function(_, opts)
+			local cmp_autopaires = require("nvim-autopairs.completion.cmp")
 			local cmp = require("cmp")
+
 			local conf = {
 				sources = cmp.config.sources({
 					{ name = "nvim_lsp" },
-					{ name = "vsnip" },
 				}, {
 					{ name = "buffer" },
 				}),
 				snippet = {
 					expand = function(args)
-						-- Comes from vsnip
-						fn["vsnip#anonymous"](args.body)
+						vim.snippet.expand(args.body)
 					end,
 				},
 				mapping = cmp.mapping.preset.insert({
-					-- None of this made sense to me when first looking into this since there
-					-- is no vim docs, but you can't have select = true here _unless_ you are
-					-- also using the snippet stuff. So keep in mind that if you remove
-					-- snippets you need to remove this select
 					["<CR>"] = cmp.mapping.confirm({ select = true }),
+					["<C-Space>"] = cmp.mapping.complete(),
+					["<C-p>"] = cmp.mapping.select_prev_item(),
+					["<C-n>"] = cmp.mapping.select_next_item(),
 				}),
 			}
 
@@ -117,6 +117,9 @@ require("lazy").setup({
 				name = "lazydev",
 				group_index = 0, -- set group index to 0 to skip loading LuaLS completions
 			})
+
+			cmp.event:on("confirm_done", cmp_autopaires.on_confirm_done())
+
 			return conf
 		end,
 	},
@@ -181,7 +184,6 @@ require("lazy").setup({
 	{ "williamboman/mason.nvim", opts = {} },
 	"williamboman/mason-lspconfig.nvim",
 	"mfussenegger/nvim-lint",
-	-- "mhartington/formatter.nvim",
 	{
 		"gbprod/yanky.nvim",
 		opts = {
@@ -235,8 +237,6 @@ require("setup/nvim-web-devicons")
 require("setup/bufferline")
 require("setup/comment_nvim")
 require("setup/typescript_tools")
-require("setup/typescript_tools")
--- require("setup/formatter")
 require("setup/nvim_lint")
 require("setup/nvim-dap")
 require("setup/lsp-config")
