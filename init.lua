@@ -1,4 +1,5 @@
 local fn = vim.fn
+vim.g.python3_host_prog = '~/.config/nvim/venv/bin/python'
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -15,6 +16,12 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+	{
+		"linrongbin16/lsp-progress.nvim",
+		config = function()
+			require("lsp-progress").setup({})
+		end,
+	},
 	{
 		"folke/lazydev.nvim",
 		ft = "lua", -- only load on lua files
@@ -79,7 +86,6 @@ require("lazy").setup({
 			local conf = {
 				sources = cmp.config.sources({
 					{ name = "nvim_lsp" },
-				}, {
 					{ name = "buffer" },
 				}),
 				snippet = {
@@ -226,6 +232,15 @@ require("lazy").setup({
 		"stevearc/conform.nvim",
 		opts = {},
 	},
+	{
+		"stevearc/aerial.nvim",
+		opts = {},
+		-- Optional dependencies
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+			"nvim-tree/nvim-web-devicons",
+		},
+	},
 })
 
 require("setup/telescope")
@@ -242,6 +257,7 @@ require("setup/nvim-dap")
 require("setup/lsp-config")
 require("setup/conform")
 require("setup/leap")
+require("setup/aerial")
 
 require("globals")
 require("keys")
@@ -274,7 +290,6 @@ vim.api.nvim_command("set tags=tags")
 vim.api.nvim_command("filetype plugin indent on")
 vim.api.nvim_command("set hidden")
 vim.api.nvim_command("set cmdheight=2")
-vim.api.nvim_command("set tags=tags")
 vim.api.nvim_command("set noswapfile")
 
 -- Don't pass messages to |ins-completion-menu|.
@@ -305,6 +320,23 @@ vim.g.startify_change_to_dir = 0
 vim.api.nvim_create_autocmd({ "BufWritePost", "FileWritePost" }, {
 	callback = function()
 		require("lint").try_lint()
+	end,
+})
+
+local rust_augroup = vim.api.nvim_create_augroup("RustConfig", { clear = true })
+
+vim.api.nvim_create_autocmd("BufRead", {
+	group = rust_augroup,
+	pattern = "*.rs",
+	callback = function()
+		local rust_src_path = os.getenv("RUST_SRC_PATH")
+
+		local tags_value = "./rusty-tags.vi;/"
+		if rust_src_path and vim.fn.isdirectory(rust_src_path) == 1 then
+			tags_value = tags_value .. "," .. rust_src_path .. "/rusty-tags.vi"
+		end
+
+		vim.bo.tags = tags_value
 	end,
 })
 

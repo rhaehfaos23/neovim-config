@@ -1,19 +1,26 @@
 local keyset = vim.keymap.set
 local builtin = require("telescope.builtin")
 
-keyset("n", ",p", '"0p', { silent = true, nowait = true, noremap = true })
-keyset("n", ",P", '"0P', { silent = true, nowait = true, noremap = true })
+keyset("n", "<C-a>", "ggVG", { silent = true, nowait = true, noremap = true })
 
 keyset("n", "<Up>", "<C-w><Up>", { silent = true, nowait = true, noremap = true })
 keyset("n", "<Down>", "<C-w><Down>", { silent = true, nowait = true, noremap = true })
 keyset("n", "<Left>", "<C-w><Left>", { silent = true, nowait = true, noremap = true })
 keyset("n", "<Right>", "<C-w><Right>", { silent = true, nowait = true, noremap = true })
+keyset("n", "<C-h>", "<cmd>bp<CR>", { silent = true, nowait = true, noremap = true })
+keyset("n", "<C-l>", "<cmd>bn<CR>", { silent = true, nowait = true, noremap = true })
+
+keyset("n", "<A-k>", "<C-w><Up>", { silent = true, nowait = true, noremap = true })
+keyset("n", "<A-j>", "<C-w><Down>", { silent = true, nowait = true, noremap = true })
+keyset("n", "<A-h>", "<C-w><Left>", { silent = true, nowait = true, noremap = true })
+keyset("n", "<A-l>", "<C-w><Right>", { silent = true, nowait = true, noremap = true })
 
 keyset("n", "<leader>ff", builtin.find_files, {})
 keyset("n", "<leader>fg", builtin.live_grep, {})
 keyset("n", "<leader>fb", builtin.buffers, {})
 keyset("n", "<leader>fh", builtin.help_tags, {})
 keyset("n", "<leader>ft", builtin.tags, {})
+keyset("n", "<leader>fa", "<cmd>Telescope aerial<CR>", {})
 
 local vimtreeapi = require("nvim-tree.api")
 keyset("n", "<leader>to", vimtreeapi.tree.open, { silent = true })
@@ -31,9 +38,11 @@ keyset("n", "<leader>cl", vim.lsp.codelens.run)
 keyset("n", "<leader>sh", vim.lsp.buf.signature_help)
 keyset("n", "<leader>rn", vim.lsp.buf.rename)
 
-keyset({ "n", "v" }, "<leader>f", function()
+keyset({ "n", "v" }, "<C-A-l>", function()
 	require("conform").format({ async = true, lsp_fallback = true })
 end, { desc = "Format file or range" })
+
+keyset("n", "<leader>rt", ":!rusty-tags vi<CR>", { noremap = true, silent = true, desc = "러스트 태그 생성"})
 
 keyset("n", "<leader>ca", vim.lsp.buf.code_action)
 
@@ -69,6 +78,12 @@ keyset("n", "<leader>e", function()
 	vim.diagnostic.open_float({ bufnr = 0, scope = "line" })
 end)
 
+keyset("x", "cy", '"+y', { silent = true, nowait = true, noremap = true })
+
+keyset("n", ",p", '"0<Plug>(YankyPutAfter)', { silent = true, nowait = true, noremap = true, desc = "커서 다음 칸에 0번 레지스터내용 붙여넣기"})
+keyset("n", ",P", '"0<Plug>(YankyPutBefore)', { silent = true, nowait = true, noremap = true, desc = "현재 커서 위치에 0번 레지스터 내용 붙여넣기" })
+keyset("n", "cp", '"+<Plug>(YankyPutAfter)', { silent = true, nowait = true, noremap = true, desc = "클립보드 내용 붙여넣기" })
+keyset("n", "cP", '"+<Plug>(YankyPutBefore)', { silent = true, nowait = true, noremap = true })
 keyset({ "n", "x" }, "p", "<Plug>(YankyPutAfter)")
 keyset({ "n", "x" }, "P", "<Plug>(YankyPutBefore)")
 keyset({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)")
@@ -89,6 +104,10 @@ keyset("n", "<P", "<Plug>(YankyPutIndentBeforeShiftLeft)")
 
 keyset("n", "=p", "<Plug>(YankyPutAfterFilter)")
 keyset("n", "=P", "<Plug>(YankyPutBeforeFilter)")
+keyset({ "n", "x" }, "p", "<Plug>(YankyPutAfter)")
+keyset({ "n", "x" }, "P", "<Plug>(YankyPutBefore)")
+keyset({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)")
+keyset({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)")
 
 keyset("n", "<leader>tyh", function()
 	require("telescope").extensions.yank_history.yank_history()
