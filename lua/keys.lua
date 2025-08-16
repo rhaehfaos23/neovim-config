@@ -1,34 +1,34 @@
 local keyset = vim.keymap.set
 local builtin = require("telescope.builtin")
 
-keyset("n", "<C-a>", "ggVG", { silent = true, nowait = true, noremap = true })
+keyset("n", "<C-a>", "ggVG", { silent = true, nowait = true, noremap = true, desc = "전체 내용 드래그"})
 
-keyset("n", "<Up>", "<C-w><Up>", { silent = true, nowait = true, noremap = true })
-keyset("n", "<Down>", "<C-w><Down>", { silent = true, nowait = true, noremap = true })
-keyset("n", "<Left>", "<C-w><Left>", { silent = true, nowait = true, noremap = true })
-keyset("n", "<Right>", "<C-w><Right>", { silent = true, nowait = true, noremap = true })
-keyset("n", "<C-h>", "<cmd>bp<CR>", { silent = true, nowait = true, noremap = true })
-keyset("n", "<C-l>", "<cmd>bn<CR>", { silent = true, nowait = true, noremap = true })
+keyset("n", "<Up>", "<C-w><Up>", { silent = true, nowait = true, noremap = true, desc = "위쪽 패널로 이동" })
+keyset("n", "<Down>", "<C-w><Down>", { silent = true, nowait = true, noremap = true, desc = "아래 패널로 이동" })
+keyset("n", "<Left>", "<C-w><Left>", { silent = true, nowait = true, noremap = true, desc = "왼쪽 패널로 이동" })
+keyset("n", "<Right>", "<C-w><Right>", { silent = true, nowait = true, noremap = true, desc = "오른쪽 패널로 이동" })
+keyset("n", "<C-h>", "<cmd>bp<CR>", { silent = true, nowait = true, noremap = true, desc = "이전 버퍼로 이동" })
+keyset("n", "<C-l>", "<cmd>bn<CR>", { silent = true, nowait = true, noremap = true, desc = "다음 버퍼로 이동" })
 
-keyset("n", "<A-k>", "<C-w><Up>", { silent = true, nowait = true, noremap = true })
-keyset("n", "<A-j>", "<C-w><Down>", { silent = true, nowait = true, noremap = true })
-keyset("n", "<A-h>", "<C-w><Left>", { silent = true, nowait = true, noremap = true })
-keyset("n", "<A-l>", "<C-w><Right>", { silent = true, nowait = true, noremap = true })
+keyset("n", "<A-k>", "<C-w><Up>", { silent = true, nowait = true, noremap = true, desc = "위쪽 패널로 이동" })
+keyset("n", "<A-j>", "<C-w><Down>", { silent = true, nowait = true, noremap = true, desc = "아래 패널로 이동" })
+keyset("n", "<A-h>", "<C-w><Left>", { silent = true, nowait = true, noremap = true, desc = "왼쪽 패널로 이동" })
+keyset("n", "<A-l>", "<C-w><Right>", { silent = true, nowait = true, noremap = true, desc = "오른쪽 패널로 이동" })
 
-keyset("n", "<leader>ff", builtin.find_files, {})
-keyset("n", "<leader>fg", builtin.live_grep, {})
-keyset("n", "<leader>fb", builtin.buffers, {})
-keyset("n", "<leader>fh", builtin.help_tags, {})
-keyset("n", "<leader>ft", builtin.tags, {})
-keyset("n", "<leader>fa", "<cmd>Telescope aerial<CR>", {})
+keyset("n", "<leader>ff", builtin.find_files, { desc = "파일 찾기"})
+keyset("n", "<leader>fg", builtin.live_grep, { desc = "프로젝트 내 검색"})
+keyset("n", "<leader>fb", builtin.buffers, { desc = "현재 열려있는 버퍼 검색"})
+keyset("n", "<leader>fh", builtin.help_tags, { desc = "vim help 내 검색"})
+keyset("n", "<leader>ft", builtin.tags, { desc = "태그 검색"})
+keyset("n", "<leader>fa", "<cmd>Telescope aerial<CR>", { desc = "아웃라인 검색"})
 
 local vimtreeapi = require("nvim-tree.api")
-keyset("n", "<leader>to", vimtreeapi.tree.open, { silent = true })
-keyset("n", "<leader>tc", vimtreeapi.tree.close, { silent = true })
-keyset("n", "<leader>tf", vimtreeapi.tree.focus, { silent = true })
+keyset("n", "<leader>to", vimtreeapi.tree.open, { silent = true, desc = "디렉토리 브라우저 열기" })
+keyset("n", "<leader>tc", vimtreeapi.tree.close, { silent = true, desc = "디렉토리 브라우저 닫기" })
+keyset("n", "<leader>tf", vimtreeapi.tree.focus, { silent = true, desc = "디렉토리 브라우저로 커서 이동" })
 
 -- LSP mappings
-keyset("n", "gD", vim.lsp.buf.definition)
+keyset("n", "gD", vim.lsp.buf.definition, { desc = "선언부로 이동" })
 keyset("n", "K", vim.lsp.buf.hover)
 keyset("n", "gi", vim.lsp.buf.implementation)
 keyset("n", "gr", vim.lsp.buf.references)
@@ -42,9 +42,9 @@ keyset({ "n", "v" }, "<C-A-l>", function()
 	require("conform").format({ async = true, lsp_fallback = true })
 end, { desc = "Format file or range" })
 
-keyset("n", "<leader>rt", ":!rusty-tags vi<CR>", { noremap = true, silent = true, desc = "러스트 태그 생성"})
+keyset("n", "<leader>rt", ":!rusty-tags vi<CR>", { noremap = true, silent = true, desc = "러스트 태그 생성" })
 
-keyset("n", "<leader>ca", vim.lsp.buf.code_action)
+keyset("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
 
 keyset("n", "<leader>ws", function()
 	require("metals").hover_worksheet()
@@ -80,9 +80,24 @@ end)
 
 keyset("x", "cy", '"+y', { silent = true, nowait = true, noremap = true })
 
-keyset("n", ",p", '"0<Plug>(YankyPutAfter)', { silent = true, nowait = true, noremap = true, desc = "커서 다음 칸에 0번 레지스터내용 붙여넣기"})
-keyset("n", ",P", '"0<Plug>(YankyPutBefore)', { silent = true, nowait = true, noremap = true, desc = "현재 커서 위치에 0번 레지스터 내용 붙여넣기" })
-keyset("n", "cp", '"+<Plug>(YankyPutAfter)', { silent = true, nowait = true, noremap = true, desc = "클립보드 내용 붙여넣기" })
+keyset(
+	"n",
+	",p",
+	'"0<Plug>(YankyPutAfter)',
+	{ silent = true, nowait = true, noremap = true, desc = "커서 다음 칸에 0번 레지스터내용 붙여넣기" }
+)
+keyset("n", ",P", '"0<Plug>(YankyPutBefore)', {
+	silent = true,
+	nowait = true,
+	noremap = true,
+	desc = "현재 커서 위치에 0번 레지스터 내용 붙여넣기",
+})
+keyset(
+	"n",
+	"cp",
+	'"+<Plug>(YankyPutAfter)',
+	{ silent = true, nowait = true, noremap = true, desc = "클립보드 내용 붙여넣기" }
+)
 keyset("n", "cP", '"+<Plug>(YankyPutBefore)', { silent = true, nowait = true, noremap = true })
 keyset({ "n", "x" }, "p", "<Plug>(YankyPutAfter)")
 keyset({ "n", "x" }, "P", "<Plug>(YankyPutBefore)")
